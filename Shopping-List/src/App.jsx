@@ -1,28 +1,26 @@
-import { useState } from "react";
-import Item from './Item'
+import { useState } from 'react';
+import Item from './Item';
 
 const App = () =>{
-
   const [items, setItems] = useState([]);
 
-  function removeItem(itemTObeRemoved){
-    const newItems = items.filter((item) =>{
-      return item !== itemTObeRemoved;
+  function removeItem(itemTobeRemoved){
+    const newItem = items.filter((item) => {
+      return item !==  itemTobeRemoved;
     });
-    setItems(newItems);
-  }
+    setItems(newItem);
+  };
 
   function handleSubmit(event){
-    event.preventDefault(); // prevent it from refreshing
-
-    const form = event.target; // for targetting the form 
-    const input = form.item; // get input from form
-
-    const newItem = [...items, input.value] // copy everything in our list to the new item list 
-
-    setItems(newItem); // updating the shopping list
-    form.reset();
+    event.preventDefault();
+    const form = event.target;
+    const input = form.item;
+    
+    const newItem = [...items, input.value];
+    setItems(newItem)
+    form.reset(); // to reset the form
   }
+
 
   return(
     <>
@@ -30,26 +28,22 @@ const App = () =>{
       <div className="shopping-list">
         <h2>items to buy</h2>
         <form onSubmit={handleSubmit}>
-          <input 
-            type="text"
-            name="item"
-            placeholder="Add new item"
-            required
+          <input
+            type="text" 
+            name='item'
+            placeholder='Add new item'
+            required  
           />
           <button>Add</button>
         </form>
         <ul>
           {items.map((item, index) => (
-              <Item  deleteitem={removeItem} key={item + index} eachItem={item} />
+            <Item key={item + index} deleteItem={removeItem} eachItem={item}/>
           ))}
-      </ul>
+        </ul>
       </div>
-    </> 
+    </>
   )
 }
 
 export default App;
-
-
-
-

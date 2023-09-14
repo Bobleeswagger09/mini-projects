@@ -1,10 +1,8 @@
-const Item = ({ eachItem, deleteitem }) => {
+const Item = ({eachItem, deleteItem}) => {
     return ( 
         <li>
             {eachItem}
-            <button className='delete' onClick={() => deleteitem(eachItem)}>
-                x
-            </button>
+            <button onClick={() => deleteItem(eachItem)}>x</button>
         </li>
      );
 }
